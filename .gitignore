@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+.env
+
+# Arquivos de origem e de saída são gerados pelo próprio projeto
+dados/entrada/*
+dados/processados/*
+!dados/entrada/.gitkeep
+!dados/processados/.gitkeep
+logs/
+
+.vscode/
+.idea/

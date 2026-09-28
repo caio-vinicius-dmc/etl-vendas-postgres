@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: etl_vendas_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-etl}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-etl_local}
+      POSTGRES_DB: ${POSTGRES_DB:-vendas}
+    ports:
+      - "${POSTGRES_PORT:-15433}:5432"
+    volumes:
+      - dados_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-etl} -d ${POSTGRES_DB:-vendas}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  dados_postgres:
